@@ -209,7 +209,7 @@ const EXTRA_CHECK_CFGS: &[(Option<Mode>, &'static str, Option<&[&'static str]>)]
     (Some(Mode::Std), "backtrace_in_libstd", None),
     /* Extra values not defined in the built-in targets yet, but used in std */
     (Some(Mode::Std), "target_env", Some(&["libnx"])),
-    (Some(Mode::Std), "target_os", Some(&["watchos"])),
+    (Some(Mode::Std), "target_os", Some(&["watchos", "cygwin"])),
     (
         Some(Mode::Std),
         "target_arch",

@@ -10,7 +10,8 @@ use libc::{getegid, geteuid, getpid};
     target_os = "ios",
     target_os = "macos",
     target_os = "watchos",
-    target_os = "openbsd"
+    target_os = "openbsd",
+    target_os = "cygwin"
 ))]
 fn test_socket_pair() {
     // Create two connected sockets and get their peer credentials. They should be equal.

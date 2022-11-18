@@ -14,7 +14,8 @@ use crate::os::unix::io::{AsFd, AsRawFd, BorrowedFd, FromRawFd, IntoRawFd, Owned
     target_os = "macos",
     target_os = "watchos",
     target_os = "netbsd",
-    target_os = "openbsd"
+    target_os = "openbsd",
+    target_os = "cygwin"
 ))]
 use crate::os::unix::ucred;
 use crate::path::Path;
@@ -33,7 +34,8 @@ use crate::time::Duration;
     target_os = "macos",
     target_os = "watchos",
     target_os = "netbsd",
-    target_os = "openbsd"
+    target_os = "openbsd",
+    target_os = "cygwin"
 ))]
 pub use ucred::UCred;
 
@@ -242,7 +244,8 @@ impl UnixStream {
         target_os = "macos",
         target_os = "watchos",
         target_os = "netbsd",
-        target_os = "openbsd"
+        target_os = "openbsd",
+        target_os = "cygwin"
     ))]
     pub fn peer_cred(&self) -> io::Result<UCred> {
         ucred::peer_cred(self)

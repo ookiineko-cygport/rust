@@ -35,7 +35,8 @@ impl Drop for Handler {
     target_os = "solaris",
     target_os = "illumos",
     target_os = "netbsd",
-    target_os = "openbsd"
+    target_os = "openbsd",
+    target_os = "cygwin"
 ))]
 mod imp {
     use super::Handler;
@@ -194,6 +195,7 @@ mod imp {
     target_os = "illumos",
     target_os = "netbsd",
     target_os = "openbsd",
+    target_os = "cygwin",
 )))]
 mod imp {
     pub unsafe fn init() {}

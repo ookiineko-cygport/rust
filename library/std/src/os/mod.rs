@@ -137,6 +137,8 @@ pub mod macos;
 pub mod netbsd;
 #[cfg(target_os = "openbsd")]
 pub mod openbsd;
+#[cfg(target_os = "cygwin")]
+pub mod cygwin;
 #[cfg(target_os = "redox")]
 pub mod redox;
 #[cfg(target_os = "solaris")]

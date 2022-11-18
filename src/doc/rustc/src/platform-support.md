@@ -313,6 +313,7 @@ target | std | host | notes
 `x86_64-unknown-hermit` | ✓ |  | HermitCore
 `x86_64-unknown-l4re-uclibc` | ? |  |
 [`x86_64-unknown-openbsd`](platform-support/openbsd.md) | ✓ | ✓ | 64-bit OpenBSD
+`x86_64-pc-cygwin` | ✓ | ? | 64-bit Cygwin
 `x86_64-uwp-windows-gnu` | ✓ |  |
 `x86_64-uwp-windows-msvc` | ✓ |  |
 `x86_64-wrs-vxworks` | ? |  |

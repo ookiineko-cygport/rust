@@ -19,6 +19,7 @@ use crate::{fmt, io};
     target_os = "freebsd",
     target_os = "openbsd",
     target_os = "netbsd",
+    target_os = "cygwin",
     target_os = "haiku"
 ))]
 use libc::MSG_NOSIGNAL;
@@ -29,6 +30,7 @@ use libc::MSG_NOSIGNAL;
     target_os = "freebsd",
     target_os = "openbsd",
     target_os = "netbsd",
+    target_os = "cygwin",
     target_os = "haiku"
 )))]
 const MSG_NOSIGNAL: libc::c_int = 0x0;

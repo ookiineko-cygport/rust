@@ -130,7 +130,7 @@ impl Thread {
         }
     }
 
-    #[cfg(target_os = "linux")]
+    #[cfg(any(target_os = "linux", target_os = "cygwin"))]
     pub fn set_name(name: &CStr) {
         const TASK_COMM_LEN: usize = 16;
 
@@ -284,7 +284,7 @@ impl Drop for Thread {
     }
 }
 
-#[cfg(any(target_os = "linux", target_os = "macos", target_os = "ios", target_os = "watchos"))]
+#[cfg(any(target_os = "linux", target_os = "cygwin", target_os = "macos", target_os = "ios", target_os = "watchos"))]
 fn truncate_cstr(cstr: &CStr, max_with_nul: usize) -> crate::borrow::Cow<'_, CStr> {
     use crate::{borrow::Cow, ffi::CString};
 
@@ -306,6 +306,7 @@ pub fn available_parallelism() -> io::Result<NonZeroUsize> {
             target_os = "fuchsia",
             target_os = "ios",
             target_os = "linux",
+            target_os = "cygwin",
             target_os = "macos",
             target_os = "solaris",
             target_os = "illumos",

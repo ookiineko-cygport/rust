@@ -521,7 +521,7 @@ impl Step for StartupObjects {
     fn run(self, builder: &Builder<'_>) -> Vec<(PathBuf, DependencyType)> {
         let for_compiler = self.compiler;
         let target = self.target;
-        if !target.ends_with("windows-gnu") {
+        if !target.ends_with("windows-gnu") && !target.ends_with("cygwin") {
             return vec![];
         }
 

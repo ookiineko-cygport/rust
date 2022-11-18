@@ -463,6 +463,7 @@ impl FileAttr {
     #[cfg(any(
         target_os = "freebsd",
         target_os = "openbsd",
+        target_os = "cygwin",
         target_os = "macos",
         target_os = "ios",
         target_os = "watchos",
@@ -474,6 +475,7 @@ impl FileAttr {
     #[cfg(not(any(
         target_os = "freebsd",
         target_os = "openbsd",
+        target_os = "cygwin",
         target_os = "macos",
         target_os = "ios",
         target_os = "watchos",
@@ -788,6 +790,7 @@ impl DirEntry {
         target_os = "ios",
         target_os = "watchos",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "emscripten",
         target_os = "android",
         target_os = "solaris",
@@ -1015,7 +1018,8 @@ impl File {
             target_os = "linux",
             target_os = "android",
             target_os = "netbsd",
-            target_os = "openbsd"
+            target_os = "openbsd",
+            target_os = "cygwin"
         ))]
         unsafe fn os_datasync(fd: c_int) -> c_int {
             libc::fdatasync(fd)
@@ -1028,6 +1032,7 @@ impl File {
             target_os = "macos",
             target_os = "netbsd",
             target_os = "openbsd",
+            target_os = "cygwin",
             target_os = "watchos",
         )))]
         unsafe fn os_datasync(fd: c_int) -> c_int {
@@ -1299,6 +1304,7 @@ impl fmt::Debug for File {
             target_os = "freebsd",
             target_os = "netbsd",
             target_os = "openbsd",
+            target_os = "cygwin",
             target_os = "vxworks"
         ))]
         fn get_mode(fd: c_int) -> Option<(bool, bool)> {
@@ -1320,6 +1326,7 @@ impl fmt::Debug for File {
             target_os = "freebsd",
             target_os = "netbsd",
             target_os = "openbsd",
+            target_os = "cygwin",
             target_os = "vxworks"
         )))]
         fn get_mode(_fd: c_int) -> Option<(bool, bool)> {

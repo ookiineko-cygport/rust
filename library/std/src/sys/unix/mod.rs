@@ -362,7 +362,7 @@ cfg_if::cfg_if! {
         #[link(name = "pthread")]
         #[link(name = "rt")]
         extern "C" {}
-    } else if #[cfg(any(target_os = "dragonfly", target_os = "openbsd"))] {
+    } else if #[cfg(any(target_os = "dragonfly", target_os = "openbsd", target_os = "cygwin"))] {
         #[link(name = "pthread")]
         extern "C" {}
     } else if #[cfg(target_os = "solaris")] {

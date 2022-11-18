@@ -67,6 +67,8 @@ mod platform {
     pub use crate::os::netbsd::*;
     #[cfg(target_os = "openbsd")]
     pub use crate::os::openbsd::*;
+    #[cfg(target_os = "cygwin")]
+    pub use crate::os::cygwin::*;
     #[cfg(target_os = "redox")]
     pub use crate::os::redox::*;
     #[cfg(target_os = "solaris")]
@@ -95,7 +97,8 @@ pub mod thread;
     target_os = "watchos",
     target_os = "macos",
     target_os = "netbsd",
-    target_os = "openbsd"
+    target_os = "openbsd",
+    target_os = "cygwin"
 ))]
 pub mod ucred;
 

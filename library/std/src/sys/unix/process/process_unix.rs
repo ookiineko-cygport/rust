@@ -752,7 +752,7 @@ fn signal_string(signal: i32) -> &'static str {
             )
         ))]
         libc::SIGSTKFLT => " (SIGSTKFLT)",
-        #[cfg(target_os = "linux")]
+        #[cfg(any(target_os = "linux", target_os = "cygwin"))]
         libc::SIGPWR => " (SIGPWR)",
         #[cfg(any(
             target_os = "macos",
@@ -761,6 +761,7 @@ fn signal_string(signal: i32) -> &'static str {
             target_os = "freebsd",
             target_os = "netbsd",
             target_os = "openbsd",
+            target_os = "cygwin",
             target_os = "dragonfly"
         ))]
         libc::SIGEMT => " (SIGEMT)",

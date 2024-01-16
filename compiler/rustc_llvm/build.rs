@@ -240,7 +240,7 @@ fn main() {
     } else if target.contains("windows-gnu") {
         println!("cargo:rustc-link-lib=shell32");
         println!("cargo:rustc-link-lib=uuid");
-    } else if target.contains("netbsd") || target.contains("haiku") || target.contains("darwin") {
+    } else if target.contains("netbsd") || target.contains("haiku") || target.contains("darwin") || target.contains("cygwin") {
         println!("cargo:rustc-link-lib=z");
     } else if target.starts_with("arm")
         || target.starts_with("mips-")

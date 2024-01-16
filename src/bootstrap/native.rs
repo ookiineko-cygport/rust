@@ -582,6 +582,8 @@ fn configure_cmake(
             cfg.define("CMAKE_SYSTEM_NAME", "FreeBSD");
         } else if target.contains("windows") {
             cfg.define("CMAKE_SYSTEM_NAME", "Windows");
+        } else if target.contains("cygwin") {
+            cfg.define("CMAKE_SYSTEM_NAME", "CYGWIN");
         } else if target.contains("haiku") {
             cfg.define("CMAKE_SYSTEM_NAME", "Haiku");
         } else if target.contains("solaris") || target.contains("illumos") {

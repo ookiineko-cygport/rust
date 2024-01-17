@@ -44,7 +44,7 @@ pub use t;
 /// Given an executable called `name`, return the filename for the
 /// executable for a particular target.
 pub fn exe(name: &str, target: TargetSelection) -> String {
-    if target.contains("windows") {
+    if target.contains("windows") || target.contains("cygwin") {
         format!("{}.exe", name)
     } else if target.contains("uefi") {
         format!("{}.efi", name)
@@ -67,7 +67,7 @@ pub fn is_debug_info(name: &str) -> bool {
 /// Returns the corresponding relative library directory that the compiler's
 /// dylibs will be found in.
 pub fn libdir(target: TargetSelection) -> &'static str {
-    if target.contains("windows") { "bin" } else { "lib" }
+    if target.contains("windows") || target.contains("cygwin") { "bin" } else { "lib" }
 }
 
 /// Adds a list of lookup paths to `cmd`'s dynamic library lookup path.

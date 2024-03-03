@@ -63,7 +63,7 @@ pub fn make_target_lib_path(sysroot: &Path, target_triple: &str) -> PathBuf {
     PathBuf::from_iter([sysroot, Path::new(&rustlib_path), Path::new("lib")])
 }
 
-#[cfg(unix)]
+#[cfg(all(unix, not(target_os = "cygwin")))]
 fn current_dll_path() -> Result<PathBuf, String> {
     use std::ffi::{CStr, OsStr};
     use std::os::unix::prelude::*;
@@ -78,6 +78,23 @@ fn current_dll_path() -> Result<PathBuf, String> {
             return Err("dladdr returned null pointer".into());
         }
         let bytes = CStr::from_ptr(info.dli_fname).to_bytes();
+        let os = OsStr::from_bytes(bytes);
+        Ok(PathBuf::from(os))
+    }
+}
+
+#[cfg(target_os = "cygwin")]
+fn current_dll_path() -> Result<PathBuf, String> {
+    use std::ffi::{CStr, OsStr};
+    use std::os::unix::prelude::*;
+
+    unsafe {
+        let addr = current_dll_path as usize as *mut _;
+        let mut info = std::mem::zeroed();
+        if libc::dladdr(addr, &mut info) == 0 {
+            return Err("dladdr failed".into());
+        }
+        let bytes = CStr::from_ptr(info.dli_fname.as_ptr()).to_bytes();
         let os = OsStr::from_bytes(bytes);
         Ok(PathBuf::from(os))
     }

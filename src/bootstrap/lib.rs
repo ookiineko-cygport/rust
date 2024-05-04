@@ -1508,6 +1508,7 @@ impl Build {
         }
     }
 
+    #[allow(dead_code)]
     fn copy_to_folder(&self, src: &Path, dest_folder: &Path) {
         let file_name = src.file_name().unwrap();
         let dest = dest_folder.join(file_name);

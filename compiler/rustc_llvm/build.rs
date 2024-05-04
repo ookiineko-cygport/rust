@@ -370,6 +370,6 @@ fn main() {
     // Libstdc++ depends on pthread which Rust doesn't link on MinGW
     // since nothing else requires it.
     if target.ends_with("windows-gnu") {
-        println!("cargo:rustc-link-lib=static:-bundle=pthread");
+        println!("cargo:rustc-link-lib=static:-bundle=ffi");
     }
 }

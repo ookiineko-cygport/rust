@@ -297,6 +297,11 @@ def set(key, value):
                 arr[part] = {}
             arr = arr[part]
 
+def exe_suffix():
+    """Return a suffix for executables"""
+    if sys.platform == 'win32':
+        return '.exe'
+    return ''
 
 for key in known_args:
     # The `set` option is special and can be passed a bunch of times
@@ -329,18 +334,18 @@ for key in known_args:
         set('llvm.ccache', 'sccache')
     elif option.name == 'local-rust':
         for path in os.environ['PATH'].split(os.pathsep):
-            if os.path.exists(path + '/rustc'):
-                set('build.rustc', path + '/rustc')
+            if os.path.exists(path + '/rustc' + exe_suffix()):
+                set('build.rustc', path + '/rustc' + exe_suffix())
                 break
         for path in os.environ['PATH'].split(os.pathsep):
-            if os.path.exists(path + '/cargo'):
-                set('build.cargo', path + '/cargo')
+            if os.path.exists(path + '/cargo' + exe_suffix()):
+                set('build.cargo', path + '/cargo' + exe_suffix())
                 break
     elif option.name == 'local-rust-root':
-        set('build.rustc', value + '/bin/rustc')
-        set('build.cargo', value + '/bin/cargo')
+        set('build.rustc', value + '/bin/rustc' + exe_suffix())
+        set('build.cargo', value + '/bin/cargo' + exe_suffix())
     elif option.name == 'llvm-root':
-        set('target.{}.llvm-config'.format(build()), value + '/bin/llvm-config')
+        set('target.{}.llvm-config'.format(build()), value + '/bin/llvm-config' + exe_suffix())
     elif option.name == 'llvm-config':
         set('target.{}.llvm-config'.format(build()), value)
     elif option.name == 'llvm-filecheck':

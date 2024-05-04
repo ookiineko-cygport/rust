@@ -144,6 +144,7 @@ impl Step for RustcDocs {
     }
 }
 
+#[allow(dead_code)]
 fn find_files(files: &[&str], path: &[PathBuf]) -> Vec<PathBuf> {
     let mut found = Vec::with_capacity(files.len());
 
@@ -160,6 +161,7 @@ fn find_files(files: &[&str], path: &[PathBuf]) -> Vec<PathBuf> {
     found
 }
 
+#[allow(dead_code)]
 fn make_win_dist(
     rust_root: &Path,
     plat_root: &Path,
@@ -327,7 +329,7 @@ impl Step for Mingw {
         // thrown away (this contains the runtime DLLs included in the rustc package
         // above) and the second argument is where to place all the MinGW components
         // (which is what we want).
-        make_win_dist(&tmpdir(builder), tarball.image_dir(), host, &builder);
+        // make_win_dist(&tmpdir(builder), tarball.image_dir(), host, &builder);
 
         Some(tarball.generate())
     }
@@ -373,7 +375,7 @@ impl Step for Rustc {
         // install will *also* include the rust-mingw package, which also needs
         // licenses, so to be safe we just include it here in all MinGW packages.
         if host.ends_with("pc-windows-gnu") {
-            make_win_dist(tarball.image_dir(), &tmpdir(builder), host, builder);
+            // make_win_dist(tarball.image_dir(), &tmpdir(builder), host, builder);
             tarball.add_dir(builder.src.join("src/etc/third-party"), "share/doc");
         }
 

@@ -1586,7 +1586,10 @@ fn detect_self_contained_mingw(sess: &Session) -> bool {
 /// Various toolchain components used during linking are used from rustc distribution
 /// instead of being found somewhere on the host system.
 /// We only provide such support for a very limited number of targets.
+#[allow(warnings)]
 fn self_contained(sess: &Session, crate_type: CrateType) -> bool {
+    return false;
+
     if let Some(self_contained) = sess.opts.cg.link_self_contained {
         if sess.target.link_self_contained == LinkSelfContainedDefault::False {
             sess.emit_err(errors::UnsupportedLinkSelfContained);

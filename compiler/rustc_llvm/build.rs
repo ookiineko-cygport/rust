@@ -202,6 +202,10 @@ fn main() {
         cfg.flag(flag);
     }
 
+    if target.contains("cygwin") {
+        cfg.define("_GNU_SOURCE", None);
+    }
+
     for component in &components {
         let mut flag = String::from("LLVM_COMPONENT_");
         flag.push_str(&component.to_uppercase());
@@ -370,6 +374,6 @@ fn main() {
     // Libstdc++ depends on pthread which Rust doesn't link on MinGW
     // since nothing else requires it.
     if target.ends_with("windows-gnu") {
-        println!("cargo:rustc-link-lib=static:-bundle=pthread");
+        println!("cargo:rustc-link-lib=static:-bundle=ffi");
     }
 }
